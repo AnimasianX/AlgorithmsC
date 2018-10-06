@@ -59,6 +59,8 @@ void mergeSort(int array[], int temp[],int lower, int upper){
     }
     int mid = (lower + upper)/2;
     
+    //To be eligible to merge the array, we would have to divide the size
+    //of the array into two halves and sort them from the bottom up
     mergeSort(array, temp, lower, mid);
     mergeSort(array, temp, mid + 1, upper);
     merge(array, temp, lower, mid, upper);
@@ -102,6 +104,7 @@ void fillRandomData(int array[], int n){
     }
 }
 
+//Calculates time in msec
 float timediff(struct timeval start, struct timeval end){
     return (end.tv_sec - start.tv_sec) * 1000.0f + (end.tv_usec - start.tv_usec)/ 1000.0f;
 }
@@ -118,12 +121,15 @@ int main(int argc, char** argv) {
     
     int n = 10;
     int* array = (int *)malloc(sizeof(int)*n);
-    int* temp = (int *)malloc(sizeof(int)*n);
-    
-    
-    if(array == NULL){
+     if(array == NULL){
         printf("Unable to allocate dynamic memory.\n");
     }
+    int* temp = (int *)malloc(sizeof(int)*n);
+     if(temp == NULL){
+        printf("Unable to allocate dynamic memory.\n");
+    }
+    
+   
     
     fillRandomData(array, n);
     printf("Unsorted array: \n");
